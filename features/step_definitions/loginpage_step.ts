@@ -13,7 +13,7 @@ Given('I am on the Parabank login page', { timeout: 100 * 10000 }, async functio
 When("I enter valid username {string} and I enter valid password {string}",{ timeout: 100 * 10000 }, async function (this:CustomWorld,username: string,password: string) {
 
    const loginpage = this.POManager.getloginPage();
-   loginpage.validlogin(username,password);
+   await loginpage.validlogin(username,password);
    
 });
 
@@ -22,20 +22,20 @@ When("I enter valid username {string} and I enter valid password {string}",{ tim
 When("I click on the login button",{ timeout: 100 * 10000 }, async function (this:CustomWorld) {
 
    const loginpage = this.POManager.getloginPage();
-   loginpage.clickloginButton();
+   await loginpage.clickloginButton();
 });
 
 Then('I should be redirected to the account overview page',{ timeout: 100 * 10000 }, async function (this:CustomWorld) {
 
    const loginpage = this.POManager.getloginPage();
-   loginpage.validatelogin();
+  await  loginpage.validatelogin();
 
 
 });
 
- Then('I should see Accounts Overview', function (this:any) {
+ Then('I should see Accounts Overview',async  function (this:any) {
     const loginpage = this.POManager.getloginPage();
-   loginpage.validatelogin();
+  await  loginpage.validatelogin();
            
          });
 

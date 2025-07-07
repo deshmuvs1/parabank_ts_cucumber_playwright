@@ -7,7 +7,7 @@ export const billPaymentData = {
   phone: "9876543210",
   accountNumber: "123456789",
   verifyAccount: "123456789",
-  amount: "1500"
+  amount: "1"
 };
 
 export const loginData ={
@@ -16,3 +16,11 @@ export const loginData ={
     password :"playwright@test.com"
 
 }
+
+export const loanPagedata  = {
+
+  loanAmount : "100",
+  downPayment: "100",
+  fromAccount: "17784"
+
+};

@@ -21,7 +21,7 @@ export class loginPage {
         this.passwordInput = page.locator('input[name="password"]');
         this.loginButton = page.locator('input[value="Log In"]');
         this.accountOverview = page.locator('h1.title').nth(0);
-        this.accountOverviewbutton = page.locator('a[href="overview.htm"]');}
+        this.accountOverviewbutton = page.getByText('Accounts Overview').nth(1);}
 
 
     async goto() {
@@ -60,6 +60,7 @@ export class loginPage {
 
     async validatelogin() {
         await  this.accountOverviewbutton.click();
-        await expect (this.accountOverview.isVisible());
-    }
-}
+        await expect (this.accountOverview).toContainText("Accounts Overview") }
+
+
+} 

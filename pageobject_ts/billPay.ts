@@ -23,17 +23,17 @@ export class billPay {
     constructor (page:Page){
         this.page=page;
         this.listname = page.locator('[href="billpay.htm"]');
-        this.address = page.getByText('[name="payee.address.street"]');
+        this.address = page.locator('[name="payee.address.street"]');
         this.payeeName = page.locator('input[name="payee.name"]');
         this.city =page.locator('input[name="payee.address.city"]');
         this.state = page.locator('input[name="payee.address.state"]');
         this.zipcode =page.locator('input[name="payee.address.zipCode"]');
-        this.phone =page.locator('#d8aef0b6-3b2b-4b05-9534-dfbd8d634ad9');
+        this.phone =page.locator('[name="payee.phoneNumber"]');
         this.account =page.locator('input[name="payee.accountNumber"]')
         this.verifyaccount=page.locator('input[name="verifyAccount"]')
         this.amount=page.locator('input[name="amount"]');
         this.sendpaymentbutton=page.getByRole('button',{name :"Send Payment"});
-        this.errorpage= page.getByText("An internal error has occurred and has been logged.");
+        this.errorpage= page.locator("#payeeName").nth(0);
         this.homebutton = page.locator('[href="index.htm"]').nth(0);
         
         
@@ -61,11 +61,14 @@ async fillpayeeform(){
 
 
 async sendbutton(){
-
+await this.page.waitForLoadState('domcontentloaded');
 await this.sendpaymentbutton.click();
 }
 async errorText(){
-    await expect (this.errorpage).toBeVisible();
-    await this.homebutton.click();
+      await this.page.waitForLoadState('domcontentloaded');
+    const result = this.page.locator("#billpayResult");
+ 
+    await expect (this.errorpage).toHaveText("Hemant");
+   
 }
 }
